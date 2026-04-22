@@ -17,31 +17,31 @@ function Dashboard() {
     if (!token) {
       navigate("/");
     }
-  }, []);
+  }, [token, navigate]);
 
   const updateCourse = async () => {
     try {
       await axios.put(
-        "http://localhost:5000/api/update-course",
+        "https://student-data-pec1.onrender.com/api/update-course", // ✅ FIXED
         { course },
         { headers: { Authorization: token } }
       );
       alert("Course updated");
-    } catch {
-      alert("Error updating course");
+    } catch (err) {
+      alert(err.response?.data?.msg || "Error updating course");
     }
   };
 
   const updatePassword = async () => {
     try {
       await axios.put(
-        "http://localhost:5000/api/update-password",
+        "https://student-data-pec1.onrender.com/api/update-password", // ✅ FIXED
         passwords,
         { headers: { Authorization: token } }
       );
       alert("Password updated");
-    } catch {
-      alert("Error updating password");
+    } catch (err) {
+      alert(err.response?.data?.msg || "Error updating password");
     }
   };
 

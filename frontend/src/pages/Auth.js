@@ -22,16 +22,28 @@ function Auth() {
 
     try {
       if (isLogin) {
-        const res = await axios.post("http://localhost:5000/api/login", {
-          email: data.email,
-          password: data.password
-        });
+        const res = await axios.post(
+          "https://student-data-pec1.onrender.com/api/login", // ✅ UPDATED
+          {
+            email: data.email,
+            password: data.password
+          }
+        );
 
         localStorage.setItem("token", res.data.token);
         navigate("/dashboard");
 
       } else {
-        await axios.post("http://localhost:5000/api/register", data);
+        await axios.post(
+          "https://student-data-pec1.onrender.com/api/register", // ✅ UPDATED
+          {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            course: data.course
+          }
+        );
+
         alert("Registered! Now login");
         setIsLogin(true);
       }
